@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MasterViewController: UITableViewController {
 
@@ -17,6 +18,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -25,6 +27,11 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        GitHubAPIManager.sharedInstance.printPublicGists()
     }
 
     override func viewWillAppear(_ animated: Bool) {

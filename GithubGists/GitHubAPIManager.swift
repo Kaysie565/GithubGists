@@ -3,8 +3,7 @@
 //  GithubGists
 
 /*This class with be responsible for our API interactions.
- It’ll help us keep our code organized so our view controllers don’t end up as
- monstrously huge files.*/
+ It’ll help us keep our code organized so our view controllers don’t end up as monstrously huge files.*/
 
 //  Created by Polina Fiksson on 13/02/2018.
 //  Copyright © 2018 PolinaFiksson. All rights reserved.

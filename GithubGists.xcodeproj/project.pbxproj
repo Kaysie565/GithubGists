@@ -16,6 +16,7 @@
 		E097ADD12033A1B500CEA550 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E097ADCF2033A1B500CEA550 /* LaunchScreen.storyboard */; };
 		E097ADD92033AEA600CEA550 /* GitHubAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097ADD82033AEA600CEA550 /* GitHubAPIManager.swift */; };
 		E097ADDB2033CB3600CEA550 /* GistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097ADDA2033CB3600CEA550 /* GistRouter.swift */; };
+		E097ADDD203513AF00CEA550 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097ADDC203513AF00CEA550 /* Gist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		E097ADD22033A1B500CEA550 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E097ADD82033AEA600CEA550 /* GitHubAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIManager.swift; sourceTree = "<group>"; };
 		E097ADDA2033CB3600CEA550 /* GistRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistRouter.swift; sourceTree = "<group>"; };
+		E097ADDC203513AF00CEA550 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		FCA6A9759BE82D030CD839F9 /* Pods-GithubGists.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubGists.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubGists/Pods-GithubGists.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				E097ADD22033A1B500CEA550 /* Info.plist */,
 				E097ADD82033AEA600CEA550 /* GitHubAPIManager.swift */,
 				E097ADDA2033CB3600CEA550 /* GistRouter.swift */,
+				E097ADDC203513AF00CEA550 /* Gist.swift */,
 			);
 			path = GithubGists;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				E097ADC92033A1B500CEA550 /* DetailViewController.swift in Sources */,
 				E097ADD92033AEA600CEA550 /* GitHubAPIManager.swift in Sources */,
+				E097ADDD203513AF00CEA550 /* Gist.swift in Sources */,
 				E097ADC72033A1B500CEA550 /* MasterViewController.swift in Sources */,
 				E097ADDB2033CB3600CEA550 /* GistRouter.swift in Sources */,
 				E097ADC52033A1B500CEA550 /* AppDelegate.swift in Sources */,
