@@ -41,18 +41,22 @@ class MasterViewController: UITableViewController {
     //MARK: Retrieve model objects
     func loadGists() {
         // GitHubAPIManager.sharedInstance.printPublicGists()
-        let gist1 = Gist()
-        gist1.description = "The first gist"
-        gist1.ownerLogin = "gist1Owner"
-        let gist2 = Gist()
-        gist2.description = "The second gist"
-        gist2.ownerLogin = "gist2Owner"
-        let gist3 = Gist()
-        gist3.description = "The third gist"
-        gist3.ownerLogin = "gist3Owner"
-        gists = [gist1, gist2, gist3]
-        // Tell the table view to reload
-        self.tableView.reloadData()
+        GitHubAPIManager.sharedInstance.fetchPublicGists { (result) in
+            //check for an error here: if there is no error then copy the fetched array of gists to our local gists array
+            guard result.error == nil else {
+                self.handleLoadGistsError(result.error!)
+                return
+            }
+            if let fetchedResults = result.value {
+                self.gists = fetchedResults
+            }
+            self.tableView.reloadData()
+            
+        }
+    }
+    
+    func handleLoadGistsError(_ error: Error) {
+        // TODO: show error
     }
 
     override func viewWillAppear(_ animated: Bool) {
