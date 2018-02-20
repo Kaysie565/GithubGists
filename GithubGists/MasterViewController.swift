@@ -14,6 +14,9 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     //array of gists
     var gists = [Gist]()
+    //hold images indexed by their URL
+    var imageCache = [String: UIImage?]()
+    
 
 
     override func viewDidLoad() {
@@ -119,17 +122,25 @@ class MasterViewController: UITableViewController {
         cell.imageView?.image = nil
         //check that we have a URL string for the image
         if let urlString = gist.ownerAvatarURL {
-            GitHubAPIManager.sharedInstance.imageFrom(urlString: urlString, completionHAndler: { (image, error) in
-                guard error == nil else {
-                    print(error!)
-                    return
-                }
-                if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
-                    cellToUpdate.imageView?.image = image
-                    //tell the cell that we’ve changed part of its view and it needs to redraw itself
-                    cellToUpdate.setNeedsLayout()
-                }
-            })
+            //check cache to see if we already have it
+            if let cachedImage = imageCache[urlString] {
+                cell.imageView?.image = cachedImage
+            }else {
+                GitHubAPIManager.sharedInstance.imageFrom(urlString: urlString, completionHAndler: { (image, error) in
+                    guard error == nil else {
+                        print(error!)
+                        return
+                    }
+                    //save image not to keep fetching it if they scroll
+                    self.imageCache[urlString] = image
+                    if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
+                        cellToUpdate.imageView?.image = image
+                        //tell the cell that we’ve changed part of its view and it needs to redraw itself
+                        cellToUpdate.setNeedsLayout()
+                    }
+                })
+            }
+            
         }
         
         return cell
