@@ -48,8 +48,25 @@ class GitHubAPIManager {
         }
         
     }
+/*This function will take the urlString for the image and use it to make a GET request. When we get
+ the results (as Data since we’re using .response) we check that there is data and if so try to turn it
+ in to an image. Then we pass that image back in the completion handler. If that fails then we kick
+ out the error to the completion handler and return.*/
     
-    
+    func imageFrom(urlString: String,completionHAndler: @escaping(UIImage?, Error?) -> Void) {
+        Alamofire.request(urlString).response {
+        dataResponse in
+            //use the generic response serializer that returns data
+            guard let data = dataResponse.data else {
+                completionHAndler(nil, dataResponse.error)
+                return
+            }
+            let image = UIImage(data: data)
+            completionHAndler(image, nil)
+            
+        }
+    }
+
     //MARK: extract an array of gists from the received response
     /* Result is a special type that Alamofire has created to allow us to return either a .success case (in this case, with the array of gists: [Gist]) or a .failure case with an error.*/
     private func gistArrayFromResponse(response: DataResponse<Any>) -> Result<[Gist]> {

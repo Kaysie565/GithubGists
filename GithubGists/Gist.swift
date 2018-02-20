@@ -20,6 +20,7 @@ class Gist {
         
     }
     //Failable Initializer
+    //parsing JSON
     //We’ll want to create new gists from JSON so we can add an initializer for that class that takes in a JSON dictionary to create a gist object.
     required init?(json:[String: Any]) {
         guard let description = json["description"] as? String,

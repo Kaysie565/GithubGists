@@ -51,6 +51,10 @@ enum GistRouter: URLRequestConvertible {
         // The resulting URLRequest is used by Alamofire to contact the desired API endpoint.
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
+        
+        //add a header
+        //urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        
         let encoding = JSONEncoding.default
         return try encoding.encode(urlRequest, with: params)
     }

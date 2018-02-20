@@ -115,6 +115,23 @@ class MasterViewController: UITableViewController {
         cell.detailTextLabel?.text = gist.ownerLogin
         // TODO: set cell.imageView to display image at gist.ownerAvatarURL
         
+        //set the image to nil in case the cell is being reused
+        cell.imageView?.image = nil
+        //check that we have a URL string for the image
+        if let urlString = gist.ownerAvatarURL {
+            GitHubAPIManager.sharedInstance.imageFrom(urlString: urlString, completionHAndler: { (image, error) in
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                if let cellToUpdate = self.tableView?.cellForRow(at: indexPath) {
+                    cellToUpdate.imageView?.image = image
+                    //tell the cell that we’ve changed part of its view and it needs to redraw itself
+                    cellToUpdate.setNeedsLayout()
+                }
+            })
+        }
+        
         return cell
     }
 
